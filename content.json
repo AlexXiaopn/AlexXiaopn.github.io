@@ -1,1 +1,1 @@
-[{"title":"我的第一篇博客文章","date":"2020-01-14T15:41:39.000Z","path":"2020/01/14/我的第一篇博客文章/","tags":[]},{"title":"Hello World","date":"2020-01-14T15:15:21.526Z","path":"2020/01/14/hello-world/","tags":[]}]
+[{"title":"我的第一篇博客文章","date":"2020-01-14T15:41:39.000Z","path":"2020/01/14/我的第一篇博客文章/","tags":[{"name":"hexo","slug":"hexo","permalink":"http://yoursite.com/tags/hexo/"},{"name":"others","slug":"others","permalink":"http://yoursite.com/tags/others/"}]},{"title":"Hello World","date":"2020-01-14T15:15:21.526Z","path":"2020/01/14/hello-world/","tags":[]}]
