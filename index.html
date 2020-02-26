@@ -190,6 +190,475 @@
             
 
   
+    <article id="post-SpringBoot高级" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2020/02/26/SpringBoot%E9%AB%98%E7%BA%A7/" target="_blank">SpringBoot高级</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2020/02/26/SpringBoot%E9%AB%98%E7%BA%A7/" class="archive-article-date">
+        <time datetime="2020-02-26T09:34:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-26</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h1 id="SpringBoot高级篇"><a href="#SpringBoot高级篇" class="headerlink" title="SpringBoot高级篇"></a>SpringBoot高级篇</h1><h3 id="内容概要"><a href="#内容概要" class="headerlink" title="内容概要"></a>内容概要</h3><ol>
+<li>Spring Boot与缓存</li>
+<li>Spring Boot与消息</li>
+<li>Spring Boot与检索 </li>
+<li>Spring Boot与任务</li>
+<li>Spring Boot与安全</li>
+<li>Spring Boot与分布式</li>
+<li>Spring Boot与安全监管</li>
+<li>Spring Boot与部署</li>
+</ol>
+<h2 id="第一章-Spring-Boot与缓存"><a href="#第一章-Spring-Boot与缓存" class="headerlink" title="第一章 Spring Boot与缓存"></a>第一章 Spring Boot与缓存</h2><p>​    JSR-107、Spring 缓存抽象 、整合Redis</p>
+<p>高频热点数据的读取 采用缓存 提升性能</p>
+<p>读取缓存-&gt;读取数据库-&gt;读取数据信息</p>
+<p>临时性的数据也可放入缓存中，从缓存中读取数据。</p>
+<h4 id="JSR-107"><a href="#JSR-107" class="headerlink" title="JSR-107"></a>JSR-107</h4><p>Java Caching定义了五个核心接口，分别是CachingProvider、CacheManager、Cache、Entry和Expiry。</p>
+<p>Caching定义了创建、配置、获取、管理和控制多个缓存管理器CachingManager。一个应用可以在运行期访问多个CachingProvider。</p>
+<p>CacheManager定义了创建、配置、获取、管理和控制多个唯一命名的Cache，这些Cache存在于CacheManager的上下文中。一个CacheManager仅被一个CachingProvider所拥有。</p>
+<p>Cache是一个类似Map的数据结构并临时存储以Key为索引的值。一个Cache仅被一个CacheManager所拥有。</p>
+<p>Entry是一个存储在Cache中的key-value对。</p>
+<p>Expiry每一个存储在Cache中的条目有一个定义的有效期。一旦超过这个时间，条目为过期的状态。一旦过期，条目将不可访问、更新和删除。缓存有效期可以tog’guoExpiryPolicy设置。</p>
+<img src="D:\deskfile\java\img\2.PNG" style="zoom:75%;" />
+
+<p>@Cacheable 主要针对方法配置，能够根据方法的请求参数对其结果进行缓存</p>
+<p>@CacheEvict 清空缓存</p>
+<p>@CachePut 保证方法被调用，又希望结果被缓存 用于缓存更新</p>
+<p>@EnableCaching 开启机遇注解的缓存</p>
+<img src="D:\deskfile\java\img\3.PNG" style="zoom:75%;" />
+
+
+
+<h3 id="基础项目"><a href="#基础项目" class="headerlink" title="基础项目"></a>基础项目</h3><p>启动sql语句日志打印</p>
+<p>logging.level.(mapper路径)=debug</p>
+<h4 id="Cacheable基本用法和属性"><a href="#Cacheable基本用法和属性" class="headerlink" title="@Cacheable基本用法和属性"></a>@Cacheable基本用法和属性</h4><p>@Cacheable加在Service层的方法上面</p>
+<p>将方法的结果进行缓存，以后再要相同的数据直接从缓存中获取，不用调用方法；</p>
+<p>CacheManager管理多个Cache组件的，对缓存的真正CRUD操作在Cache组件中，每一个缓存组件有自己唯一一个名字；</p>
+<p>几个属性：</p>
+<ul>
+<li>cacheNames/value:指定缓存组件的名字。</li>
+<li>key：缓存数据使用的key；可以用它来指定。默认是使用方法参数的值 1-方法的返回值</li>
+<li>keygenerator：key的生成器；可以自己指定key的生成器的组件ID，key/keygenerator二选一使用</li>
+<li>cacheManager：指定缓存管理器；或者cacheResolver指定获取解析器</li>
+<li>condition：指定符合条件的情况下缓存；#a0</li>
+<li>unless：否定缓存；当unless指定的条件为true，方法的返回值就不会被缓存；可以获取到结果进行判断（#result可以取出方法结果的值）</li>
+</ul>
+<h4 id="缓存运行原理"><a href="#缓存运行原理" class="headerlink" title="缓存运行原理"></a>缓存运行原理</h4><p>自动配置类SimpleAutoCache匹配</p>
+<h4 id="运行流程"><a href="#运行流程" class="headerlink" title="运行流程"></a>运行流程</h4><ol>
+<li><p>方法运行之前，现在Cache组件中查找，按照cacheNames指定的名字获取。</p>
+<p>（CacheManager先获取相应的缓存），第一次获取缓存如果没有Cache组件自动创建。</p>
+</li>
+<li><p>去Cache中查找缓存的内容，使用一个的key，默认就是方法的参数。</p>
+<p>key是按照某种策略生成的，默认是使用keyGenerator生成，默认使用SimpleKeyGenerator生成。</p>
+<p>SimpleKeyGenerator生成key的默认策略；</p>
+<p>如果没有参数；key = new SimpleKey();</p>
+<p>如果有一个参数； key = 参数的值;</p>
+<p>如果有多个参数；key = new SimpleKey(params);</p>
+</li>
+<li><p>没有查到缓存就调用目标方法。</p>
+</li>
+<li><p>将目标方法返回的结果，放进缓存中。</p>
+</li>
+</ol>
+<p>@Cacheable标注的方法执行之前先来检查缓存中有没有这个数据，默认按照参数的值作为key去查询缓存。</p>
+<h4 id="核心"><a href="#核心" class="headerlink" title="核心"></a>核心</h4><ol>
+<li>使用CacheManager【ConcurrentMapCacheManager】按照名字得到Cache【ConcurrentMapCache】组件</li>
+<li>key使用keyGenerator生成的，默认是SimpleKeyGenerator。</li>
+</ol>
+<hr>
+<h4 id="CachePut基本属性和使用方法"><a href="#CachePut基本属性和使用方法" class="headerlink" title="@CachePut基本属性和使用方法"></a>@CachePut基本属性和使用方法</h4><p>修改了数据库的某个属性，同时跟新缓存。</p>
+<p>运行时机：</p>
+<ol>
+<li>先调用目标方法</li>
+<li>现将目标方法的结果缓存起来</li>
+</ol>
+<p>测试步骤：</p>
+<ol>
+<li>查询一号员工，查到的结果会放在缓存中。</li>
+<li>以后查询还是之前的结果</li>
+<li>更新一号员工：【lastName:zhangsan;gender=0】</li>
+<li>查询一号员工？</li>
+</ol>
+<p>@CacheEvict：缓存清除</p>
+<p> key：指定要清除的数据</p>
+<p>allEntries = true：指定清除缓存中所有的数据。</p>
+<p>beforeInvocation = true 清除缓存在方法执行之前。无论方法是否异常，缓存都清除。</p>
+<hr>
+<h4 id="Caching"><a href="#Caching" class="headerlink" title="@Caching"></a>@Caching</h4><p>复杂的缓存 可配置三种缓存 @Cacheable @CachePut @CacheEvict</p>
+<hr>
+<p>默认使用的是ConcurrentMapCacheManager==ConcurrentMapCache；将数据保存在ConcurrentMap&lt;Object,Object&gt;中<br>开发中使用缓存中间件；redis、memcached、ehcache；</p>
+<hr>
+<h4 id="整合redis作为缓存"><a href="#整合redis作为缓存" class="headerlink" title="整合redis作为缓存"></a>整合redis作为缓存</h4><p>略过</p>
+<h2 id="第二章Spring-Boot-与消息"><a href="#第二章Spring-Boot-与消息" class="headerlink" title="第二章Spring Boot 与消息"></a>第二章Spring Boot 与消息</h2><pre><code>JMS java消息服务
+AMQP 高级消息队列协议
+RabbitMQ</code></pre><h5 id="消息服务中两个重要概念"><a href="#消息服务中两个重要概念" class="headerlink" title="消息服务中两个重要概念"></a>消息服务中两个重要概念</h5><ul>
+<li>消息代理</li>
+<li>目的地</li>
+</ul>
+<h5 id="消息队列主要两种形式的目的地"><a href="#消息队列主要两种形式的目的地" class="headerlink" title="消息队列主要两种形式的目的地"></a>消息队列主要两种形式的目的地</h5><ol>
+<li>队列（queue）：点对点消息通信</li>
+<li>主题（topic）：发布（publish）/订阅（subscribe）消息通信</li>
+</ol>
+<h5 id="异步处理"><a href="#异步处理" class="headerlink" title="异步处理"></a>异步处理</h5><img src="D:\deskfile\java\img\4.png" alt="4" style="zoom:50%;" />
+
+<p>应用解耦 流量削峰</p>
+<h3 id="整合RabbitMQ"><a href="#整合RabbitMQ" class="headerlink" title="整合RabbitMQ"></a>整合RabbitMQ</h3><h5 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h5><ul>
+<li><p>Message消息 消息是不具名的。它由消息头和消息体组成。消息体是不透明的，而消息头则由一系列的可选属性组成。</p>
+</li>
+<li><p>Publisher消息的生产者，也是一个向交换器发送消息的客户端应用程序。</p>
+</li>
+<li><p>Exchange交换器，用来接受生产者发送的消息并将这些消息路由给服务器中的队列。</p>
+<p>Exchange有四种类型</p>
+<ul>
+<li>​    direct（默认）</li>
+<li>​    fanout</li>
+<li>​    topic</li>
+<li>​    headers</li>
+</ul>
+</li>
+</ul>
+<p>Message 消息，消息是不具名的，它由消息头和消息体组成。消息体是透明的，而消息头则由一系列的可选属性组成。</p>
+<p>Publisher 消息的生产者，也是一个向交换器发布消息的客户端应用程序。</p>
+<p>Exchange交换器，用来接收生产者发送的消息并将这些消息路由给服务器中的队列。</p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SpringBoot</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">高级进阶</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/study//" class="article-tag-list-link color1">study</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2020/02/26/SpringBoot%E9%AB%98%E7%BA%A7/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-JavaStudy" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2020/02/26/JavaStudy/" target="_blank">JavaStudy</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2020/02/26/JavaStudy/" class="archive-article-date">
+        <time datetime="2020-02-26T09:33:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-26</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h1 id="Java-Study"><a href="#Java-Study" class="headerlink" title="Java Study"></a>Java Study</h1><ul>
+<li><h3 id="计算机的基本体系结构"><a href="#计算机的基本体系结构" class="headerlink" title="计算机的基本体系结构"></a>计算机的基本体系结构</h3></li>
+</ul>
+<p>​    冯·诺依曼议题结构</p>
+<ul>
+<li><h3 id="输入器-存储器-运算器、控制器-输出器"><a href="#输入器-存储器-运算器、控制器-输出器" class="headerlink" title="输入器  存储器{运算器、控制器} 输出器"></a>输入器  存储器{运算器、控制器} 输出器</h3></li>
+</ul>
+<ul>
+<li><h3 id="内存"><a href="#内存" class="headerlink" title="内存"></a>内存</h3></li>
+</ul>
+<p>​    基本的存储单位byte字节，一个字节为8个比特bit</p>
+<ul>
+<li><h3 id="JavaEE高级-（重点掌握部分）"><a href="#JavaEE高级-（重点掌握部分）" class="headerlink" title="JavaEE高级 （重点掌握部分）"></a>JavaEE高级 （重点掌握部分）</h3></li>
+</ul>
+<ol>
+<li>Mycat 实现 MySql 的分布式、分库分表、读写分离</li>
+<li>Nginx反向代理、负载均衡、动静分离</li>
+<li>JVM内存模型、参数调优</li>
+<li>JUC线程高级</li>
+<li>分布式架构注册中心Zookeeper</li>
+<li>虚拟化应用容器Docker</li>
+<li>全文检索引擎ElasticSearch</li>
+<li>消息队列RabbitMQ</li>
+<li>前端VUE/ES6</li>
+</ol>
+<ul>
+<li><h3 id="二进制"><a href="#二进制" class="headerlink" title="二进制"></a>二进制</h3><p>二进制数的最高位是符号位。</p>
+<p>正数的原码、补码、反码相同。</p>
+<p>负数的反码是除了符号位，各个位取反。</p>
+</li>
+</ul>
+<img src="D:\deskfile\java\img\1.PNG" style="zoom:80%;" />
+
+<p>​        计算机底层都以补码的方式来存储数据。</p>
+<ul>
+<li><h2 id="红黑树基础知识"><a href="#红黑树基础知识" class="headerlink" title="红黑树基础知识"></a>红黑树基础知识</h2><p>红黑树是一种自平衡二叉查找树</p>
+</li>
+</ul>
+<ul>
+<li><h3 id="HashMap高级"><a href="#HashMap高级" class="headerlink" title="HashMap高级"></a>HashMap高级</h3><p>HashMap是基于哈希表的Map接口实现，是以</p>
+</li>
+</ul>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/study//" class="article-tag-list-link color1">study</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2020/02/26/JavaStudy/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Android-studio" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2020/02/26/Android-studio/" target="_blank">Android studio</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2020/02/26/Android-studio/" class="archive-article-date">
+        <time datetime="2020-02-26T09:31:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-26</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h1 id="Android-studio"><a href="#Android-studio" class="headerlink" title="Android studio"></a>Android studio</h1><p>安卓学习之路</p>
+<h3 id="安卓底层一共有几层基础架构组成？各层的主要功能？组成各是什么？"><a href="#安卓底层一共有几层基础架构组成？各层的主要功能？组成各是什么？" class="headerlink" title="安卓底层一共有几层基础架构组成？各层的主要功能？组成各是什么？"></a>安卓底层一共有几层基础架构组成？各层的主要功能？组成各是什么？</h3><p>一共有4层架构组成，最底层是基于linux内核实现的。负责硬件驱动，网络管理，电源管理，系统安全，内存管理。<br>第二层是由大多数开源的数据库组成的。例如：标准的c函数库Libc负责网页浏览器运行，影音视频播放。<br>第三层是应用程序架构，提供软件开发的api包含了用户UI界面的各种所需要的控件。功能：显示，消息提供，资源管理，提示消息。<br>最上层是应用程序层。如主屏幕，联系人，电话，浏览器，游戏。</p>
+<h3 id="R-java-文件简介"><a href="#R-java-文件简介" class="headerlink" title="R.java 文件简介"></a>R.java 文件简介</h3><p>Android studio中R.java所在目录为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app&#x2F;build&#x2F;generated&#x2F;source&#x2F;r&#x2F;arm&#x2F;debug&#x2F;com.example.dfanghu.myapplication&#x2F;R.java</span><br></pre></td></tr></table></figure>
+
+<p>根目录下的R.java文件是编译器自动生成的，它无需开发人员对其进行维护。R.java文件会自动收录当前应用中所有的资源，并根据这些资源建立对应的ID，包括布局资源、控件资源、String资源等。我们可以简单地把R.java理解成是当前android应用的资源字典。</p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">android</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">安卓之路</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/study//" class="article-tag-list-link color1">study</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2020/02/26/Android-studio/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-SpringBoot-环境配置" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -941,6 +1410,18 @@ OS name: &quot;windows 10&quot;, version: &quot;10.0&quot;, arch: &quot;amd64&qu
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">android</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">安卓之路</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
@@ -953,7 +1434,7 @@ OS name: &quot;windows 10&quot;, version: &quot;10.0&quot;, arch: &quot;amd64&qu
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color5">高级进阶</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -962,6 +1443,10 @@ OS name: &quot;windows 10&quot;, version: &quot;10.0&quot;, arch: &quot;amd64&qu
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">others</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
             
             <div class="clearfix"></div>
