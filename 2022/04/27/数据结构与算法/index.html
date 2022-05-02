@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Hexo</title>
+  <title>数据结构与算法 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/index.html">
+  <meta name="description" content="数据结构与算法十大经典排序算法总结（Java）算法说明：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构与算法">
+<meta property="og:url" content="http://example.com/2022/04/27/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="数据结构与算法十大经典排序算法总结（Java）算法说明：">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-04-27T15:56:22.996Z">
+<meta property="article:modified_time" content="2022-04-27T16:02:11.926Z">
 <meta property="article:author" content="alexxiao">
 <meta name="twitter:card" content="summary">
   
@@ -187,152 +191,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-数据库知识点总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-数据结构与算法" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/04/27/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/">数据库知识点总结</a>
-    </h1>
-  
-
-        
-        <a href="/2022/04/27/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/" class="archive-article-date">
-  	<time datetime="2022-04-27T15:56:22.998Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-04-27</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="数据库知识点总结"><a href="#数据库知识点总结" class="headerlink" title="数据库知识点总结"></a>数据库知识点总结</h1><hr>
-<h2 id="数据库管理的主要功能是什么？"><a href="#数据库管理的主要功能是什么？" class="headerlink" title="数据库管理的主要功能是什么？"></a>数据库管理的主要功能是什么？</h2><p>数据定义、数据操纵、数据库的运行管理、数据库建立和维护</p>
-<hr>
-<h2 id="数据库系统的特点是什么？"><a href="#数据库系统的特点是什么？" class="headerlink" title="数据库系统的特点是什么？"></a>数据库系统的特点是什么？</h2><p>数据结构化、数据共享性搞、冗余度低且扩充、数据独立性高、数据由DBMS统一管理</p>
-<hr>
-<h2 id="数据库的三级模式结构是什么？二级映射有什么优点？"><a href="#数据库的三级模式结构是什么？二级映射有什么优点？" class="headerlink" title="数据库的三级模式结构是什么？二级映射有什么优点？"></a>数据库的三级模式结构是什么？二级映射有什么优点？</h2><p>外模式、模式、内模式</p>
-<ol>
-<li>模式描述了数据库中全体数据的逻辑结构和特征</li>
-<li>外模式描述了用户可见的局部数据的逻辑结构和特征</li>
-<li>内模式描述的是数据库的物理结构</li>
-</ol>
-<p>外模式-模式映像的优点：当模式改变时，由DBA对外模式&#x2F;模式映像做相应的改变，外模式可以保持不变。应用程序是根据外模式编写的，因而应用程序不必修改，保证了数据与逻辑的独立性，即数据的逻辑独立性。</p>
-<p>内模式-模式映像的优点：当数据库的存储结构改变时，由DBA对外模式-内模式映射做出相应的改变，可以使模式保持不变，从而应用程序也不需要改变。保证了数据与程序的物理独立性，即数据的物理独立性。</p>
-<hr>
-<h2 id="完整性约束哪几类？定义？"><a href="#完整性约束哪几类？定义？" class="headerlink" title="完整性约束哪几类？定义？"></a>完整性约束哪几类？定义？</h2><ul>
-<li>实体完整性：关系模式中主码不能为空值</li>
-<li>参照完整性：关系模式中的外码只能是空值或者另一关系的主码</li>
-<li>用户定义完整性：关系模式中针对某一属性的约束</li>
-</ul>
-<hr>
-<h2 id="等值连接和自然连接的区别？"><a href="#等值连接和自然连接的区别？" class="headerlink" title="等值连接和自然连接的区别？"></a>等值连接和自然连接的区别？</h2><p>自然连接是等值连接的一种特殊情况，等值连接要求连接的值相等的分量，两个关系中可以没有相同的属性，进行自然连接的两个关系中必须又相同的属性。等值连接不要求去掉重复属性列，自然连接时需要去掉重复的属性列。</p>
-<hr>
-<h2 id="外连接"><a href="#外连接" class="headerlink" title="外连接"></a>外连接</h2><p>外连接是指两个表在进行操作时，不仅返回符合连接和查询条件的元组。还返回不符合条件的一些元组。<br>全外连接是左外连接和右外连接去掉重复项的元组集并集。</p>
-<hr>
-<h2 id="索引的作用"><a href="#索引的作用" class="headerlink" title="索引的作用"></a>索引的作用</h2><p>数据量比较大的时候，查询操作比较耗时，建立索引可以加快查询速度<br>优点：加速查询速度，缺点：索引需要占一定的存储空间，且基本表更新时需要维护索引表</p>
-<hr>
-<h2 id="索引和键有什么区别"><a href="#索引和键有什么区别" class="headerlink" title="索引和键有什么区别"></a>索引和键有什么区别</h2><p>索引是存储在数据库中的一个物理结构，是实际存在的，相当于一本书的目录。<br>键是一个逻辑概念，不是数据库中的物理部分。键分为主键和外键，主键相当于一本书中的每个页的页码。</p>
-<hr>
-<h2 id="数据据库中常用的索引有哪些？"><a href="#数据据库中常用的索引有哪些？" class="headerlink" title="数据据库中常用的索引有哪些？"></a>数据据库中常用的索引有哪些？</h2><p>B+树索引：B+树是对B树优化处理了的多路搜索树，与B树的区别在于，B树的每个结点都可以存储数据，而B+树只有叶子节点可以存储数据，且每个叶子节点都用链表连接。<br>在数据库的查询中一般都是批量查询数据，采用B+树一次查询多条时，确定首尾位置，便可以方便地确定多条数据的位置，调高查询效率。<br>Hash索引：通过哈希函数计算出哈希值，然后映射出对应的数据存储位置。检索速度快，但是哈希值可能存在碰撞。</p>
-<hr>
-<h2 id="视图是什么有什么作用？"><a href="#视图是什么有什么作用？" class="headerlink" title="视图是什么有什么作用？"></a>视图是什么有什么作用？</h2><p>视图是从一个或者几个基本表中导出的一个虚表。数据库中只存放视图的定义，而不存放视图对应的数据。基本表中的数据发生改变时，从视图中查询出来的数据也就随之发生变化。<br>作用：</p>
-<ul>
-<li>简化用户操作</li>
-<li>以多种角度看待同一数据</li>
-<li>一定程度上提供了数据的逻辑独立性</li>
-<li>能够对秘密数据提供安全保护</li>
-<li>利用可以更清晰的表达查询</li>
-</ul>
-<hr>
-<h2 id="安全性技术"><a href="#安全性技术" class="headerlink" title="安全性技术"></a>安全性技术</h2><p>安全性技术：用户表示和鉴别、多层存取控制、审计、视图、数据加密</p>
-<hr>
-<h2 id="视图机制是如何对数据库实现安全性控制的？"><a href="#视图机制是如何对数据库实现安全性控制的？" class="headerlink" title="视图机制是如何对数据库实现安全性控制的？"></a>视图机制是如何对数据库实现安全性控制的？</h2><p>可以对不同的用户定义不同的视图，也就是说，通过视图机制把要保密的数据对无权存取的用户隐藏起来。</p>
-<hr>
-<h2 id="审计功能是如何对数据库实现安全性控制的？"><a href="#审计功能是如何对数据库实现安全性控制的？" class="headerlink" title="审计功能是如何对数据库实现安全性控制的？"></a>审计功能是如何对数据库实现安全性控制的？</h2><p>审计功能是把用户对数据库的一系列操作自动记录到审计日志中，审计员可以利用审计日志监控数据库中的各种行为，找出导致数据库发生异常的事件。</p>
-<hr>
-<h2 id="什么是断言？"><a href="#什么是断言？" class="headerlink" title="什么是断言？"></a>什么是断言？</h2><p>断言是指更具一般性的约束，断言创建后，任何涉及到断言中的关系的操作都会引发数据库对断言的检查，任何使断言为假的操作都会被拒绝执行。</p>
-<hr>
-<h2 id="什么是触发器？触发器的作用？"><a href="#什么是触发器？触发器的作用？" class="headerlink" title="什么是触发器？触发器的作用？"></a>什么是触发器？触发器的作用？</h2><p>触发器是用户定义在关系表上的一类由数据驱动的一类事物驱动的特殊过程，类似于约束，但是比约束更灵活，是保证数据库完整性的一种方法。任何用户对表进行增删改查操作都会有数据库服务器自动激活相应的触发器，对数据库进行相应的检查和操作。</p>
-<hr>
-<h2 id="规范化过程中，逐级依次消除了何种函数依赖？"><a href="#规范化过程中，逐级依次消除了何种函数依赖？" class="headerlink" title="规范化过程中，逐级依次消除了何种函数依赖？"></a>规范化过程中，逐级依次消除了何种函数依赖？</h2><p>由1NF到2NF，消除了非主属性对主属性的部分函数依赖<br>由2NF到3NF，消除了非主属性对主属性的传递函数依赖<br>由3NF到BCNF，消除了主属性对码的部分函数依赖和传递函数依赖</p>
-<hr>
-<h2 id="合并E-R图时主要包括哪几种冲突？"><a href="#合并E-R图时主要包括哪几种冲突？" class="headerlink" title="合并E-R图时主要包括哪几种冲突？"></a>合并E-R图时主要包括哪几种冲突？</h2><p>属性冲突。不同的实体对同一属性的定义不同。<br>命名冲突。同名异议、异名同义。<br>结构冲突。同一实体在不同的局部E-R图中有不同的抽象。</p>
-<hr>
-<h2 id="一个实体型转换为一个关系模式有哪几种情况？"><a href="#一个实体型转换为一个关系模式有哪几种情况？" class="headerlink" title="一个实体型转换为一个关系模式有哪几种情况？"></a>一个实体型转换为一个关系模式有哪几种情况？</h2><p>一个1：1联系可以转换为一个独立的关系模式，也可以与任意一端对应的关系模式合并。<br>一个1：n联系可以转换为一个独立的关系模式，也可以与n端对应的关系模式合并。<br>一个m:n联系可以转换为一个关系模式，与该联系相连的各实体的码遗迹联系本身的属性均转换为关系的属性。</p>
-<hr>
-<h2 id="什么是存储过程？用什么来调？"><a href="#什么是存储过程？用什么来调？" class="headerlink" title="什么是存储过程？用什么来调？"></a>什么是存储过程？用什么来调？</h2><p>存储过程是个预编译的SQL语句集合，优点是可以建立非常复杂的查询，只需创建一次，在程序中即可多次调用，且比执行单纯的SQL语句要快。可以创建一个命令对象进行调用。</p>
-<hr>
-<h2 id="游标是什么？"><a href="#游标是什么？" class="headerlink" title="游标是什么？"></a>游标是什么？</h2><p>系统为用户开设的数据缓冲区，存放SQL语句的执行结果。</p>
-<hr>
-<h2 id="数据库恢复的基本技术有哪些？"><a href="#数据库恢复的基本技术有哪些？" class="headerlink" title="数据库恢复的基本技术有哪些？"></a>数据库恢复的基本技术有哪些？</h2><p>数据转储、登记日志文件</p>
-<hr>
-<h2 id="数据库为什么要并发控制？"><a href="#数据库为什么要并发控制？" class="headerlink" title="数据库为什么要并发控制？"></a>数据库为什么要并发控制？</h2><p>数据库是共享资源，通常有多个事务在同时执行，当多个事务并发的存取数据库时就会存在同时读或写统一数据的情况，如果对并发操作不加控制，就会存在数据读取错误，破坏数据库的一致性。</p>
-<hr>
-<h2 id="并发造成的数据不一致性包括什么？"><a href="#并发造成的数据不一致性包括什么？" class="headerlink" title="并发造成的数据不一致性包括什么？"></a>并发造成的数据不一致性包括什么？</h2><ul>
-<li>丢失修改</li>
-<li>不可重读</li>
-<li>读脏数据</li>
-</ul>
-<hr>
-<h2 id="什么是锁？有哪两种锁？"><a href="#什么是锁？有哪两种锁？" class="headerlink" title="什么是锁？有哪两种锁？"></a>什么是锁？有哪两种锁？</h2><p>锁是最常用的并发控制机构，是防止其他事务访问指定资源，实现并发控制的一种手段。<br>排他锁：当数据被加上写锁，其他事务不能对该数据进行读和写<br>共享锁：当数据被加上读锁，允许其他事务对该数据进行读，不允许写。</p>
-<hr>
-<h2 id="一、二、三级封锁协议"><a href="#一、二、三级封锁协议" class="headerlink" title="一、二、三级封锁协议"></a>一、二、三级封锁协议</h2><p>一级封锁协议：事务在修改数据之前加写锁，直到事务结束才释放。该协议可以防止丢失修改。<br>二级封锁协议：在一级封锁协议的基础上，加上了事务在读取数据之前对其加读锁，读完后即可释放读锁。该协议避免了读脏数据。<br>三级封锁协议：在一级封锁协议的基础上，加上了事务在读取数据之前必须加上读锁，直到事务结束才释放。该协议解决了不可重复读问题。</p>
-<hr>
-<h2 id="数据库保护的内容有哪些？"><a href="#数据库保护的内容有哪些？" class="headerlink" title="数据库保护的内容有哪些？"></a>数据库保护的内容有哪些？</h2><p>利用权限机制，利用完整性约束防止法数据进入数据库，提供故障恢复能力，提供并发访问控制。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/04/27/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-数据结构与算法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/04/27/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
+    <h1 class="article-title" itemprop="name">
+      数据结构与算法
     </h1>
   
 
@@ -349,6 +215,27 @@
       
 
       
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
     </div>
     <div class="article-info article-info-index">
       
@@ -356,16 +243,84 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/04/27/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2022/04/27/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2022/04/27/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          数据库知识点总结
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/04/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">计算机网络</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -385,332 +340,14 @@
 
 
 
-
   
-    <article id="post-计算机网络" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/04/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
-    </h1>
   
 
-        
-        <a href="/2022/04/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" class="archive-article-date">
-  	<time datetime="2022-04-27T15:56:22.993Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-04-27</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h1><h2 id="重要名词缩写"><a href="#重要名词缩写" class="headerlink" title="重要名词缩写"></a>重要名词缩写</h2><ul>
-<li>HDLC(High-level Data Link Control)：高级数据链路控制</li>
-<li>PPP(Point-to-Point Protocol over Ethernet)：点对点协议</li>
-<li><code>IP</code>(Internet Protocol)：<code>网络协议</code></li>
-<li>IPCP(IP Control Protocol)：IP控制协议</li>
-<li>ICMP(Internet Control Message Protocol)：网际控制报文协议</li>
-<li>IGMP(Internet Group Management Protocol)：网际组织管理协议</li>
-<li><code>TCP</code>(Transmission Control Block)：<code>传输控制协议</code></li>
-<li><code>RIP</code>(Routing Information Protocol)：<code>路由协议信息</code></li>
-<li><code>UDP</code>(User Data Protocol)：<code>用户数据包协议</code></li>
-<li><code>HTTP</code>(HyperText Markup Protocol)：<code>超文本传输协议</code></li>
-<li><code>FTP</code>(File Transfer Protocol)：<code>文件传输协议</code></li>
-<li><code>DNS</code>(Domain Name System)：<code>域名</code></li>
-<li><code>API</code>(Application Programming Interface)：<code>应用编程接口</code></li>
-<li>ARP(Address Resolution Protocal)：地址解析协议</li>
-<li>ARQ(Automatic Repeat reQuest)：地址重传协议</li>
-<li>ATM(Asynchronous Transfer Mode)：异步传递方式</li>
-<li>CDM(Code Division Multiplexing)：码分复用</li>
-<li>CDMA(Code Division Multiplex Access)：码分多址</li>
-<li>DDos(Distributed Dential of Service)：分布式拒绝服务</li>
-<li><code>DHCP</code>(Dynamic Host Configuration Protocol)：<code>动态主机配置协议</code></li>
-<li>PCM(Pulse Code Modulation)：脉码调制</li>
-<li><code>PDU</code>(Protocol Data Unit)：<code>协议数据单元</code></li>
-<li><code>SDU</code>(Service Data Unit)：<code>服务数据单元</code></li>
-<li>VPN(Virtual Private Network)：虚拟专用网</li>
-<li>WLAN(Wireless Local Area NetWork)：无线局域网</li>
-<li>XHTML(Extensible HTML)：可拓展标记语言</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br></pre></td><td class="code"><pre><span class="line">ACK(ACKnowledgement) 确认</span><br><span class="line">ADSL(Asymmetric Digital Subscriber Line）非对称数字用户线</span><br><span class="line">AES(Advanced Encryption Standard）先进的加密标准</span><br><span class="line">AF PHB(Assured Forwarding Per-Hop Behavior)确保转发每跳行为（也可记为AF)</span><br><span class="line">AH (Authentication Header)鉴别首部</span><br><span class="line">AIMD (Additive Increase Multiplicative Decrease)加法增大乘法减小</span><br><span class="line">AN(Access Network)接入网</span><br><span class="line">AP(Access Point)）接入点</span><br><span class="line">AP(Application)应用程序</span><br><span class="line">API(Application Programming Interface)应用编程接口</span><br><span class="line">APNIC (Asia Pacific Network Information Center）亚太网络信息中心</span><br><span class="line">ARP(Address Resolution Protocol)地址解析协议</span><br><span class="line">ARQ(Automatic Repeat reQuest）自动重传请求</span><br><span class="line">AS(Autonomous System)自治系统</span><br><span class="line">AS(Authentication Server)鉴别服务器</span><br><span class="line">ASN(Autonomous System Number）自治系统号</span><br><span class="line">ATM(Asynchronous Transfer Mode)异步传递方式</span><br><span class="line">ATU-C(Access Termination Unit Central Office）端局接入端接单元</span><br><span class="line">ATU (Access Termination Unit）接入端接单元</span><br><span class="line">ATU-R(Access Termination Unit Remote）远端接入端接单元</span><br><span class="line">AVTWG(Audio/Video Transport Working Group）音频视频运输工作组</span><br><span class="line">AWT(Abstract Window Toolkit)抽象窗口工具箱</span><br><span class="line">BER(Bit Error Rate)误码率</span><br><span class="line">BER(Basic Encoding Rule）基本编码规则</span><br><span class="line">BGP(Border Gateway Protocol)边界网关协议</span><br><span class="line">BOOTP(BOOTstrap Protocol)引导程序协议</span><br><span class="line">BSA(Basic Service Area）基本服务区</span><br><span class="line">BSC (Base Station Controller）基站控制器</span><br><span class="line">BSS (Basic Service Set）基本服务集</span><br><span class="line">BT(BitTorrent)一种P2P应用程序</span><br><span class="line">CA(Certification Authority)认证中心</span><br><span class="line">CCIR(Consultative Committee,International Radio)国际无线电咨询委员会</span><br><span class="line">CDM(Code Division Multiplexing)）码分复用</span><br><span class="line">CDMA(Code Division Multiplex Access）码分多址</span><br><span class="line">CGI(Common Gateway Interface)通用网关接口</span><br><span class="line">CNNIC(China Network Information Center)中国互联网络信息中心</span><br><span class="line">CRC(Cyclic Redundancy Check）循环冗余检验</span><br><span class="line">CSMA/CD(Carrier Sense Multiple Access/ Collision Detection)，载波监听多点接入/冲突检测</span><br><span class="line">CSMA/CA(Carrier Sense Multiple Access /Collision Avoidance)，载波监听多点接入/冲突避免</span><br><span class="line">CSRC(Contributing SouRCe identifier)参与源标识符</span><br><span class="line">Css(Cascading Style Sheets）层叠样式表</span><br><span class="line">CTS (Clear To Send)允许发送</span><br><span class="line">DACS(Digital Access and Cross-connect System）数字交接系统</span><br><span class="line">DDoS(Distributed Denial of Service)分布式拒绝服务</span><br><span class="line">DES (Data Encryption Standard）数据加密标准</span><br><span class="line">DF(Don&#x27;t Fragment)不能分片</span><br><span class="line">DHCP(Dynamic Host Configuration Protocol)动态主机配置协议</span><br><span class="line">DiffServ(Differentiated Services)区分服务</span><br><span class="line">DIFS(Distributed Coordination Function IFS)分布协调功能帧间间隔</span><br><span class="line">DLCI(Data Link Connection Identifier)）数据链路连接标识符</span><br><span class="line">DMT (Discrete Multi-Tone）离散多音（调制）</span><br><span class="line">DNS (Domain Name System)域名系统</span><br><span class="line">DOCSIS(Data Over Cable Service Interface Specifications）电缆数据服务接口规约</span><br><span class="line">DoS (Denial of Service)拒绝服务</span><br><span class="line">DS (Distribution System)分配系统</span><br><span class="line">DSCP (Differentiated Services CodePoint)区分服务码点</span><br><span class="line">DSL (Digital Subscriber Line)数字用户线</span><br><span class="line">DSLAM (DSL Access Multiplexer)数字用户线接入复用器</span><br><span class="line">DSSS (Direct Sequence Spread Spectrum)直接序列扩频</span><br><span class="line">DVMRP (Distance Vector Multicast Routing Protocol)距离向量多播路由选择协议</span><br><span class="line">DWDM (Dense WDM)密集波分复用</span><br><span class="line">EBCDIC (Extended Binary-Coded Decimal Interchange Code)扩充的二/十进制交换码</span><br><span class="line">EDFA (Erbium Doped Fiber Amplifier)掺铒光纤放大器</span><br><span class="line">EDGE (Enhanced Data rate for GSM Evolution)增强型数据速率GSM演进</span><br><span class="line">EFM (Ethermnet in the First Mile)第- -英里的以太网</span><br><span class="line">EGP (Extermal Gateway Protocol)外部网关协议</span><br><span class="line">EOT (End Of Transmission)传输结束</span><br><span class="line">EPON (Ethernet PON)以太网无源光网络</span><br><span class="line">ESMTP (Extended SMTP)扩充的简单邮件传送协议</span><br><span class="line">ESP (Encapsulating Security Payload)封装安全有效载荷</span><br><span class="line">ESS (Extended Service Set)扩展的服务集</span><br><span class="line">EUI (Extended Unique Identifer)扩展的唯- - 标识符</span><br><span class="line">FC (Fiber Channel)光纤通道</span><br><span class="line">FCS (Frame Check Sequence)帧检验序列</span><br><span class="line">FDDI (Fiber Distributed Data Interface)光纤分布式数据接口</span><br><span class="line">FDM (Frequency Division Multiplexing)频分复用</span><br><span class="line">FHSS (Frequency Hopping Spread Spectrum)跳频扩频</span><br><span class="line">FIFO (First In First Out)先进先出</span><br><span class="line">FQ (Fair Queuing)公平排队</span><br><span class="line">FTP (File Transfer Protocol)文件传送协议</span><br><span class="line">FTTB (Fiber To The Building)光纤到大楼</span><br><span class="line">FTTC (Fiber To The Curb)光纤到路边</span><br><span class="line">FTTD (Fiber To The Door)光纤到门户</span><br><span class="line">FTTF (Fiber To The Floor)光纤到楼层</span><br><span class="line">FTTH (Fiber To The Home)光纤到家</span><br><span class="line">FTTN (Fiber To The Neighbor)光纤到邻区</span><br><span class="line">FTTO (Fiber To The Office)光纤到办公室</span><br><span class="line">FTTZ (Fiber To The Zone)光纤到小区</span><br><span class="line">GGSN (Gateway GPRS Support Node)网关GPRS支持结点</span><br><span class="line">GIF (Graphics Interchange Format)图形交换格式</span><br><span class="line">GMSK (Gaussian filtered Minimum Shift Keying)高斯滤波最小移频键控</span><br><span class="line">GPRS (General Packet Radio Service)通用分组无线服务</span><br><span class="line">GSM (Global System for Mobile)全球移动通信系统，GSM体制</span><br><span class="line">HDLC (High-level Data Link Control)高级数据链路控制</span><br><span class="line">HDSL (High speed DSL)高速数字用户线</span><br><span class="line">HFC (Hybrid Fiber Coax)光纤同轴混合(网)</span><br><span class="line">HIPPI (HIgh-Performance Parallel Interface)高性能并行接口</span><br><span class="line">HLR (Home Location Register)归属位置寄存器</span><br><span class="line">HR-DSS (High Rate Direct Sequence Spread Spectrum)高速直接序列扩频</span><br><span class="line">HTML (HyperText Markup Language)超文本标记语言</span><br><span class="line">HTTP (HyperText Transfer Protocol)超文本传送协议</span><br><span class="line">IAB (Internet Architecture Board)互联网体系结构委员会</span><br><span class="line">ICMP (Internet Control Message Protocol)网际控制报文协议</span><br><span class="line">IDEA (International Data Encryption Algorithm)国际数据加密算法</span><br><span class="line">IDS (Intrusion Detection System)入侵检测系统</span><br><span class="line">IEEE (Institute of Electrical and Electronic Engineering) (美国) 电气和电子工程师学会</span><br><span class="line">IESG (Internet Engineering Steering Group)互联网工程指导小组</span><br><span class="line">IFS (InterFrame Space)帧间间隔</span><br><span class="line">I/G (Individual/Group)单个站/组地址(位)</span><br><span class="line">IGMP (Internet Group Management Protocol)网际组管理协议</span><br><span class="line">IGP (Interior Gateway Protocol)内部网关协议</span><br><span class="line">IKE (Internet Key Exchange)互联网密钥交换</span><br><span class="line">IM (Instant Messaging)即时传信</span><br><span class="line">IMAP (Internet Message Access Protocol)网际报文存取协议</span><br><span class="line">IND (Inverse-Neighbor-Discovery)反向邻站发现</span><br><span class="line">IntServ (Integrated Services)综合服务</span><br><span class="line">IP (Internet Protocol)网际协议</span><br><span class="line">IPCP (IP Control Protocol) IP控制协议</span><br><span class="line">IPng (IP Next Generation)下一 -代的IP</span><br><span class="line">IPRA (nternet Policy Registration Authority)互联网政策登记管理机构</span><br><span class="line">IPsec (IP security) IP安全协议</span><br><span class="line">IPX (Internet Packet Exchange) Novell公司的一种连网协议</span><br><span class="line">IR (Infra Red)红外技术</span><br><span class="line">IRTF (Internet Research Task Force)互联网研究部</span><br><span class="line">ISAKMP (Intermet Secure Association and Key Management Mechanism)互联网安全关联和密钥管理协议</span><br><span class="line">ISDN (Integrated Services Digital Network)综合业务数字网</span><br><span class="line">ITU (Intermational Telecommunication Union)国际电信联盟</span><br><span class="line">JPEG (Joint Photographic Expert Group)联合图像专家组</span><br><span class="line">JVM (Java Virtual Machine) Java虚拟机</span><br><span class="line">KDC (Key Distribution Center)密钥分配中心</span><br><span class="line">LAN (Local Area Network)局域网</span><br><span class="line">LCP (Link Control Protocol)链路控制协议</span><br><span class="line">LDP (Label Distribution Protocol)标记分配协议</span><br><span class="line">LED (Light Emitting Diode)发光二极管</span><br><span class="line">LMDS (Local Multipoint Ditribution System)本地多点分配系统</span><br><span class="line">LlC (Logical Link Control)逻辑链路控制</span><br><span class="line">LoS (Line of Sight)视距</span><br><span class="line">LPC (linear Prediction Coding)线性预测编码</span><br><span class="line">LSP (Label Switched Path)标记交换路径</span><br><span class="line">LSR (Label Switching Router)标记交换路由器</span><br><span class="line">LTE (Long-Termn Evolution)长期演进</span><br><span class="line">MAC (Medium Access Control)媒体接入控制</span><br><span class="line">MAC (Message Authentication Code)报文鉴别码</span><br><span class="line">MACA (Multiple Access with Collision Avoidance)具有碰撞避免的多点接入</span><br><span class="line">MAN (Metropolitan Area Network)城域网</span><br><span class="line">MANET (Mobile Ad-hoc NETworks)移动自组网络的工作组</span><br><span class="line">MBONE (Multicast Backbone On the InterNEt)多播主干网</span><br><span class="line">MD (Message Digest)报文摘要</span><br><span class="line">MCU (Multipoint Control Unit)多点控制单元</span><br><span class="line">MFTP (Multisource File Transfer Protocol)多源文件传输协议</span><br><span class="line">MIB (Management Information Base)管理信息库</span><br><span class="line">MIME (Mulipurpose Internet Mail Extensions)通用互联网邮件扩充</span><br><span class="line">MIMO (Multiple Input Multiple Output)多入多出</span><br><span class="line">MIPS (Million Instructions Per Second)百万指令每秒</span><br><span class="line">MPEG (Motion Picture Experts Group)活动图像专家组</span><br><span class="line">MPLS (MultiProtocol Label Switching)多协议标记交换</span><br><span class="line">MRU (Maximum Receive Unit)最大接收单元</span><br><span class="line">MSC (Mobile Switching Center)移动交换中心</span><br><span class="line">MSRN (Mobile Station Roaming Number)移动站漫游号码</span><br><span class="line">MSS (Maximum Segment Size)最长报文段</span><br><span class="line">MTU (Maximum Transfer Unit)最大传送单元</span><br><span class="line">NAP (Network Access Point)网络接入点</span><br><span class="line">NAT (Network Address Translation)网络地址转换</span><br><span class="line">NAV (Network Allocation Vector)网络分配向量</span><br><span class="line">NCP (Network Control Protocol)网络控制协议</span><br><span class="line">NFS (Network File System)网络文件系统</span><br><span class="line">NIC (Network Interface Card)网络接口卡、网卡</span><br><span class="line">NOC Network Operations Center)网络运行中心</span><br><span class="line">NVT (Network Virtual Terminal)网络虚拟终端</span><br><span class="line">OC (Optical Carrier)光载波</span><br><span class="line">ODN (Optical Distribution Network)光配线网</span><br><span class="line">ODN (Optical Distribution Node)光分配结点</span><br><span class="line">OFDM (Orthogonal Frequency Division Mutiplexing)正交频分复用</span><br><span class="line">OLT (Optical Line Terminal)光线路终端</span><br><span class="line">ONU (Optical Network Unit)光网络单元</span><br><span class="line">P2P (Peer-to-Peer)对等方式</span><br><span class="line">PAN.(Personal Area Network)个人区域网</span><br><span class="line">PAP (Password Authentication Protocol)口令鉴别协议</span><br><span class="line">PCM (Pulse Code Modulation)脉码调制</span><br><span class="line">PCMCIA (Personal Computer Memory Card Interface Adapter)个人计算机存储器卡接口适配器</span><br><span class="line">PDA (Personal Digital Assistant)个人数字助理</span><br><span class="line">PDF (Portable Document Forment)轻便文档格式</span><br><span class="line">PDU (Protocol Data Unit)协议数据单元</span><br><span class="line">PEM (Privacy Enhanced Mai)互联网的正式邮件加密标准</span><br><span class="line">PGP (Pretty Good Privacy) - -种电子邮件加密技术</span><br><span class="line">PHB (Per-Hop Behavior)每跳行为</span><br><span class="line">PIM-DM (Protocol Independent Muticast-Dense Mode)协议无关多播-密集方式</span><br><span class="line">PIM-SM (Protocol Independent Multicast Sparse Mode)协议无关多播-稀疏方式</span><br><span class="line">PK (public key)公钥，公开密钥</span><br><span class="line">PKI (Public Key Infrastructure)公钥基础结构</span><br><span class="line">PLMN (Public Land Mobile Network)公共陆地移动网络</span><br><span class="line">PON (Passive Optical Network)无源光网络</span><br><span class="line">PoP (Point of Presence)汇接点</span><br><span class="line">POP (Post Office Protocol)邮局协议</span><br><span class="line">POTS (Plain Old Telephone Service)传统电话</span><br><span class="line">PPP (Point-to-Point Protocol)点对点协议</span><br><span class="line">PPPoE (Point-to-Point Protocol over Ethernet)以太网上的点对点协议</span><br><span class="line">PS (POTS Splitter)电话分离器</span><br><span class="line">PTE (Path Terminating Element)路径端接设备</span><br><span class="line">QAM (Quadrature Amplitude Modulation)正交幅度调制</span><br><span class="line">QoS (Quality of Service)服务质量</span><br><span class="line">QPSK (Quarternary Phase Shift Keying或Quadrature Phase Shift Keying)正交相移键控</span><br><span class="line">RA (Registration Authority)注册管理机构</span><br><span class="line">RARP (Reverse Address Resolution Protocol)逆地址解析协议</span><br><span class="line">RAS (Registration/Admission/Status)登记/接纳/状态</span><br><span class="line">RIP (Routing Information Protocol)路由信息协议</span><br><span class="line">RPB (Reverse Path Broadcasting)反向路径广播</span><br><span class="line">RTCP (Real-time Transfer Control Protocol)实时传送控制协议</span><br><span class="line">RTP (Real-ime Transport Protocol)实时运输协议</span><br><span class="line">RTS (Request To Send)请求发送</span><br><span class="line">SACK (Selective ACK)选择确认</span><br><span class="line">SAP (Service Access Point)服务访问点</span><br><span class="line">SCTP (Stream Control Transmission Protocol)流控制传输协议</span><br><span class="line">SDH (Synchronous Digital Hierarchy)同步数字系列</span><br><span class="line">SDSL (Single-line DSL) 1对线的数字用户线</span><br><span class="line">SDU (Service Data Unit)服务数据单元</span><br><span class="line">SIFS (Short IFS)短帧间间隔</span><br><span class="line">SK (Secret Key)秘钥</span><br><span class="line">SMI (Structure of Management Information)管理信息结构</span><br><span class="line">SMTP (Simple Mail Transfer Protocol)简单邮件传送协议</span><br><span class="line">SNA (System Network Architecture)系统网络体系结构</span><br><span class="line">SNMP (Simple Network Management Protocol)简单网络管理协议</span><br><span class="line">SONET (Synchronous Optical Network)同步光纤网</span><br><span class="line">SPD (Security Policy Database)安全策略数据库</span><br><span class="line">SRA (Seamless Rate Adaptation)无缝速率自适应技术</span><br><span class="line">SSRC (Synchronous SouRCe identifer)同步源标识符</span><br><span class="line">STDM (Statistic TDM)统计时分复用</span><br><span class="line">STM (Synchronous Transfer Module)同步传递模块</span><br><span class="line">STP (Shielded Twisted Pair)屏蔽双绞线</span><br><span class="line">STS (Synchronous Transport Signal)同步传送信号</span><br><span class="line">TAG (TAG Switching)标记交换</span><br><span class="line">TCB (Transmission Control Block)传输控制程序块</span><br><span class="line">TCP (Transmission Control Protocol)传输控制协议</span><br><span class="line">TDM (Time Division Multiplexing)时分复用</span><br><span class="line">TD-SCDMA (Time Division-Synchronous CDMA)时分同步的码分多址</span><br><span class="line">TELNET (TELetype NETwork)电传机网络，-一种互联网的应用程序</span><br><span class="line">TFTP (Trivial File Transfer Protocol)简单文件传送协议</span><br><span class="line">TLA (Top-Level Aggregation)顶级聚合</span><br><span class="line">TLD (Top Level Domain)顶级域名</span><br><span class="line">TLI (Transport Layer Interface)运输层接口</span><br><span class="line">TLS (Transport Layer Security)运输层安全协议</span><br><span class="line">TPDU (Transport Protocol Data Unit)运输协议数据单元</span><br><span class="line">UAS (User Agent Server)用户代理服务器</span><br><span class="line">URL (Uniform Resource Locator)统一资源定位符</span><br><span class="line">UIB (User Interface Box)用户接口盒</span><br><span class="line">UTP (Unshielded Twisted Pair)无屏蔽双绞线</span><br><span class="line">UWB (UItra-Wide Band)超宽带</span><br><span class="line">VC (Virtual Circuit)虚电路</span><br><span class="line">VCI (Virtual Channel Identifier)虛通路标识符</span><br><span class="line">VDSL (Very high speed DSL)甚高速数字用户线</span><br><span class="line">VLAN (Virtual LAN)虚拟局域网</span><br><span class="line">VLSM (Variable Length Subnet Mask)变长子网掩码</span><br><span class="line">VPI (Virtual Path Identifier)虚通道标识符</span><br><span class="line">VPN (Virtual Private Network)虚拟专用网</span><br><span class="line">WaN (Wide Area Network)广域网</span><br><span class="line">VSAT (Very Small Aperture Terminal)甚小孔径地球站</span><br><span class="line">WCDMA (Wideband CDMA)宽带码分多址</span><br><span class="line">WDM (Wavelength Division Multiplexing)波分复用.</span><br><span class="line">WLAN (Wireless Local Area Network）无线局域网</span><br><span class="line">WMAN(Wireless Metropolitan Area Network)无线城域网</span><br><span class="line">WPA (Wi-Fi Protected Access）无线局域网受保护的接入</span><br><span class="line">WPAN (Wireless Personal Area Network)无线个人区域网</span><br><span class="line">WSN(Wireless Sensor Network)无线传感器网络</span><br><span class="line">ＷＷＷ (World Wide Web）万维网</span><br><span class="line">W3C (World Wide Web Consortium)万维网联盟</span><br><span class="line">XHTML (Extensible HTML)可扩展超文本标记语言</span><br><span class="line">XML(Extensible Markup Language)可扩展标记语言</span><br></pre></td></tr></table></figure>
-
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/04/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-SpringBoot" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/04/27/SpringBoot/">SpringBoot</a>
-    </h1>
   
 
-        
-        <a href="/2022/04/27/SpringBoot/" class="archive-article-date">
-  	<time datetime="2022-04-27T15:56:22.991Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-04-27</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="SpringBoot"><a href="#SpringBoot" class="headerlink" title="SpringBoot"></a>SpringBoot</h1><h2 id="SpringBoot-条件注解"><a href="#SpringBoot-条件注解" class="headerlink" title="SpringBoot 条件注解"></a>SpringBoot 条件注解</h2><p>WebMvcAutoConfiguration生效的条件是：当前应用类型是SERVLET类型的WEB项目，并且项目的classpath中存在Servlet.class，DispatcherServlet.class，WebMvcConfig.class三个，并且项目的Spring容器中没有WebConfigurationSupport.class类型的Bean。</p>
-<hr>
-<p>条件注解：</p>
-<ol>
-<li>ConditionalOnBean：是否存在某个类或某个名字的Bean</li>
-<li>ConditionalOnMissingBean：是否缺失某个某类获某个名字的Bean</li>
-<li>ConditionalOnSingleCandidate：是否符合指定类型的Bean只有一个</li>
-<li>ConditionalOnClass：是否存在某个类</li>
-<li>ConditionalOnMissingClass：是否缺失某个类</li>
-<li>ConditionalOnExpression：指定的表达式返回的是true还是false</li>
-<li>ConditionalOnJndi：JNDI指定的资源是否存在</li>
-<li>ConditionalOnWebApplication：当前应用是一个Web应用</li>
-<li>ConditionalOnNotWebApplication：当前应用不是一个Web应用</li>
-<li>ConditionalOnProperty：Environment中是否存在某个属性</li>
-<li>ConditionalOnResource：指定的资源是否存在</li>
-<li>ConditionalOnWarDeployment：当前项目是不是以War包部署的方式运行</li>
-<li>ConditionalOnCloudPlatform：是不是在某个云平台上</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/04/27/SpringBoot/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-JVM学习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/04/27/JVM%E5%AD%A6%E4%B9%A0/">JVM虚拟机</a>
-    </h1>
   
 
-        
-        <a href="/2022/04/27/JVM%E5%AD%A6%E4%B9%A0/" class="archive-article-date">
-  	<time datetime="2022-04-27T15:56:22.988Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-04-27</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="JVM虚拟机"><a href="#JVM虚拟机" class="headerlink" title="JVM虚拟机"></a>JVM虚拟机</h1><p>以Java8学习</p>
-<hr>
-<h3 id="Jvm字节码"><a href="#Jvm字节码" class="headerlink" title="Jvm字节码"></a>Jvm字节码</h3><p>多个语言可以通过编译器编译成字节码，</p>
-<hr>
-<h3 id="openjdk-oraclejdk"><a href="#openjdk-oraclejdk" class="headerlink" title="openjdk oraclejdk"></a>openjdk oraclejdk</h3><p>基于的协议不同 OTN JTL</p>
-<hr>
-<h3 id="Java虚拟机"><a href="#Java虚拟机" class="headerlink" title="Java虚拟机"></a>Java虚拟机</h3><p>Java虚拟机就是二进制字节码的运行环境，负责装载字节码到内部，编译成机器指令执行。每一条Java指令，Java虚拟机规范中都有详细定义，如怎么取操作数，怎么处理操作数，处理结果放在哪里。</p>
-<hr>
-<h3 id="JVM所处位置"><a href="#JVM所处位置" class="headerlink" title="JVM所处位置"></a>JVM所处位置</h3><p>User-&gt;字节码文件-&gt;JVM-&gt;操作系统-&gt;硬件</p>
-<hr>
-<h3 id="JVM整体结构"><a href="#JVM整体结构" class="headerlink" title="JVM整体结构"></a>JVM整体结构</h3><p>class files-&gt;类装载子系统（class loader）-&gt;运行时数据区（方法区、堆、Java栈、本地方法栈、程序计数器）-&gt;执行引擎-&gt;本地方法接口</p>
-<hr>
-<h3 id="Java代码执行流程"><a href="#Java代码执行流程" class="headerlink" title="Java代码执行流程"></a>Java代码执行流程</h3><p>Java源码-&gt;Java编译器-&gt;字节码文件-&gt;Java虚拟机（类加载器-&gt;字节码校验器-&gt;翻译字节码JIT编译器）-&gt;操作系统</p>
-<hr>
-<h3 id="Java架构模型"><a href="#Java架构模型" class="headerlink" title="Java架构模型"></a>Java架构模型</h3><p>基于栈式架构、基于寄存器架构 </p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/04/27/JVM%E5%AD%A6%E4%B9%A0/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/04/27/hello-world/">Hello World</a>
-    </h1>
-  
-
-        
-        <a href="/2022/04/27/hello-world/" class="archive-article-date">
-  	<time datetime="2022-04-27T07:06:02.256Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-04-27</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/04/27/hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
 
 
@@ -737,8 +374,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
