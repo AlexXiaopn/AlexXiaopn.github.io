@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="x5-fullscreen" content="true">
+<meta name="full-screen" content="yes">
+<meta name="theme-color" content="#317EFB" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=0" name="viewport">
+<meta name="description" content="下载私有仓库镜像，并且搭建私有仓库 docker 仓库操作 打标签 查看镜像 查看tag 上传镜像 下载镜像 镜像删除   私库配置用户名密码   服务器通信 ： 保证在同一内网  下载私有仓库镜像 搭建私有仓库1234567891011docker pull registry:2docker images # 需要挂载的目录及配置文件创建mkdir -p &#x2F;opt&#x2F;data&#x2F;registry#">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker私有仓库">
+<meta property="og:url" content="http://example.com/2024/11/23/Docker%E7%A7%81%E6%9C%89%E4%BB%93%E5%BA%93/index.html">
+<meta property="og:site_name" content="AlexxiaoBlog">
+<meta property="og:description" content="下载私有仓库镜像，并且搭建私有仓库 docker 仓库操作 打标签 查看镜像 查看tag 上传镜像 下载镜像 镜像删除   私库配置用户名密码   服务器通信 ： 保证在同一内网  下载私有仓库镜像 搭建私有仓库1234567891011docker pull registry:2docker images # 需要挂载的目录及配置文件创建mkdir -p &#x2F;opt&#x2F;data&#x2F;registry#">
+<meta property="og:locale">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="article:published_time" content="2024-11-23T15:54:31.361Z">
+<meta property="article:modified_time" content="2024-11-24T06:26:40.947Z">
+<meta property="article:author" content="alexxiao">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/404.jpg">
+
+    <meta name="keywords" content="docker,私有仓库">
+
+
+<title >Docker私有仓库</title>
+
+<!-- Favicon -->
+
+    <link href='/img/favicon.svg?v=2.2.4' rel='icon' type='image/png' sizes='16x16' ></link>
+
+
+    <link href='/img/favicon.svg?v=2.2.4' rel='icon' type='image/png' sizes='32x32' ></link>
+
+
+
+
+<!-- Plugin -->
+
+
+
+
+    
+<link rel="stylesheet" href="/css/plugins/bootstrap.row.css">
+
+    
+<link rel="stylesheet" href="https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.css">
+
+    
+    
+
+
+
+
+<!-- Icon -->
+
+    
+<link rel="stylesheet" href="/css/plugins/font-awesome.min.css">
+
+
+
+
+<!-- Variable -->
+<script>window.ASYNC_CONFIG = {"hostname":"example.com","author":"alexxiao","root":"/","typed_text":["我是程序员alex，一名Java后端开发工程师。"],"theme_version":"2.2.4","theme":{"switch":true,"default":"style-dark"},"favicon":{"logo":"/img/favicon.svg","icon16":"/img/favicon.svg","icon32":"/img/favicon.svg","apple_touch_icon":null,"webmanifest":null,"visibilitychange":false,"hidden":"/failure.ico","show_text":"(/≧▽≦/)咦！又好了！","hide_text":"(●—●)喔哟，崩溃啦！"},"i18n":{"placeholder":"搜索文章...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）","author":"本文作者：","copyright_link":"本文链接：","copyright_license_title":"版权声明：","copyright_license_content":"本博客所有文章除特别声明外，均默认采用 undefined 许可协议。","copy_success":"复制成功","copy_failure":"复制失败","open_read_mode":"进入阅读模式","exit_read_mode":"退出阅读模式","notice_outdate_message":"距离上次更新已经 undefined 天了, 文章内容可能已经过时。","sticky":"置顶","just":"刚刚","min":"分钟前","hour":"小时前","day":"天前","month":"个月前"},"swup":false,"plugin":{"flickr_justified_gallery":"https://unpkg.com/flickr-justified-gallery@latest/dist/fjGallery.min.js"},"icons":{"sun":"far fa-sun","moon":"far fa-moon","play":"fas fa-play","email":"far fa-envelope","next":"fas fa-arrow-right","calendar":"far fa-calendar-alt","clock":"far fa-clock","user":"far fa-user","back_top":"fas fa-arrow-up","close":"fas fa-times","search":"fas fa-search","reward":"fas fa-hand-holding-usd","toc_tag":"fas fa-th-list","read":"fas fa-book-reader","arrows":"fas fa-arrows-alt-h","double_arrows":"fas fa-angle-double-down","copy":"fas fa-copy"},"icontype":"font","highlight":{"plugin":"highlighjs","theme":true,"copy":true,"lang":true,"title":"default","height_limit":false},"toc":{"post_title":true},"live_time":{"start_time":"","prefix":"博客已萌萌哒运行 undefined 天"},"danmu":{"enable":true,"el":".trm-banner","avatar":true,"delayRange":5000,"speed":80}};</script>
+<script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2024-11-24 14:26:40"};</script>
+
+<!-- Theme mode css -->
+<link data-swup-theme rel="stylesheet" href="/css/index.css?v=2.2.4" id="trm-switch-style">
+<script>
+    let defaultMode = ASYNC_CONFIG.theme.default !=='auto' ?  ASYNC_CONFIG.theme.default : (window.matchMedia("(prefers-color-scheme: light)").matches ? 'style-light' : 'style-dark')
+    let catchMode = localStorage.getItem('theme-mode') || defaultMode;
+    let type = catchMode === 'style-dark' ? 'add' : 'remove';
+    document.documentElement.classList[type]('dark')
+</script>
+
+<!-- CDN -->
+
+
+    
+    
+
+
+
+<!-- Site Analytics -->
+
+ 
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+
+  <!-- app wrapper -->
+  <div class="trm-app-frame">
+
+    <!-- page preloader -->
+    <div class="trm-preloader">
+    <div class="trm-holder">
+        <div class="preloader">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+</div>
+    <!-- page preloader end -->
+
+    <!-- change mode preloader -->
+    <div class="trm-mode-swich-animation-frame">
+    <div class="trm-mode-swich-animation">
+        <i class="i-sun"><i class="iconfont far fa-sun"></i></i>
+        <div class="trm-horizon"></div>
+        <i class="i-moon"><i class="iconfont far fa-moon"></i></i>
+    </div>
+</div>
+    <!-- change mode preloader end -->
+
+      <!-- scroll container -->
+      <div id="trm-dynamic-content" class="trm-swup-animation">
+        <div id="trm-scroll-container" class="trm-scroll-container" style="opacity: 0">
+            <!-- top bar -->
+            <header class="trm-top-bar">
+	<div class="container">
+		<div class="trm-left-side">
+			<!-- logo -->
+<a href="/" class="trm-logo-frame trm-anima-link">
+    
+        <img alt="logo" src="/img/favicon.svg">
+    
+    
+        <div class="trm-logo-text">
+            alex<span>xiao</span>
+        </div>
+    
+</a>
+<!-- logo end -->
+		</div>
+		<div class="trm-right-side">
+			<!-- menu -->
+<div class="trm-menu">
+    <nav>
+        <ul>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/" target="">
+                    首页
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/archives/" target="">
+                    归档
+                </a>
+                
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+<!-- menu end -->
+			
+    <!-- mode switcher place -->
+    <div class="trm-mode-switcher-place">
+        <div class="trm-mode-switcher">
+            <i class="iconfont far fa-sun"></i>
+            <input class="tgl tgl-light" id="trm-swich" type="checkbox">
+            <label class="trm-swich" for="trm-swich"></label>
+            <i class="iconfont far fa-moon"></i>
+        </div>
+    </div>
+    <!-- mode switcher place end -->
+
+			
+		</div>
+		<div class="trm-menu-btn">
+			<span></span>
+		</div>
+	</div>
+</header>
+            <!-- top bar end -->
+
+            <!-- body -->
+            
+<div class="trm-content-start">
+    <!-- banner -->
+    <div class="trm-banner">
+    
+    <!-- banner cover -->
+    <img style="object-position:top;object-fit:cover;" alt="banner" class="trm-banner-cover" src="/img/pinkgirl-banner.png">
+    <!-- banner cover end -->
+    
+
+    <!-- banner content -->
+    <div class="trm-banner-content trm-overlay">
+        <div class="container">
+            <div class="row">
+                
+                <div class="col-lg-4"></div>
+                
+                <div class="col-lg-8">
+
+                    <!-- banner title -->
+                    <div class="trm-banner-text ">
+                        <div class="trm-label trm-mb-20">
+                            
+                        </div>
+                        <h1 class="trm-mb-30 trm-hsmb-font">
+                            Docker私有仓库
+                        </h1>
+
+                        
+                            <ul class="trm-breadcrumbs trm-label">
+                                <li>
+                                    <a href="/" class="trm-anima-link">Home</a>
+                                </li>
+                                <li>
+                                    <span>
+                                        2024
+                                    </span>
+                                </li>
+                            </ul>
+                        
+                    </div>
+                    <!-- banner title end -->
+
+                    <!-- scroll hint -->
+                    <span id="scroll-triger" class="trm-scroll-hint-frame">
+                        <div class="trm-scroll-hint"></div>
+                        <span class="trm-label">Scroll down</span>
+                    </span>
+                    <!-- scroll hint end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- banner content end -->
+</div>
+    <!-- banner end -->
+    <div class="container">
+        <div class="row">
+            
+                <div class="trm-page-sidebar col-lg-4 hidden-sm">
+                    <!-- main card -->
+                    <div class="trm-main-card-frame trm-sidebar">
+    <div class="trm-main-card"> 
+        <!-- card header -->
+<div class="trm-mc-header">
+    <div class="trm-avatar-frame trm-mb-20">
+        <img alt="Avatar" class="trm-avatar" src="/img/avatar.png">
+    </div>
+    <h5 class="trm-name trm-mb-15">
+        alexiao
+    </h5>
+    
+        <div class="trm-label">
+            大家好，
+            <span class="trm-typed-text">
+                <!-- Words for theme.user.typedText -->
+            </span>
+        </div>
+    
+</div>
+<!-- card header end -->
+        <!-- sidebar social -->
+
+<div class="trm-divider trm-mb-40 trm-mt-40"></div>
+<div class="trm-social">
+    
+        <a href="https://github.com" title="github" rel="nofollow" target="_blank">
+            <i class="iconfont fab fa-github"></i>
+        </a>
+    
+        <a href="https://gitee.com" title="gitee" rel="nofollow" target="_blank">
+            <i class="iconfont iconfont cg-gitee"></i>
+        </a>
+    
+</div>
+
+<!-- sidebar social end -->
+        <!-- info -->
+<div class="trm-divider trm-mb-40 trm-mt-40"></div>
+<ul class="trm-table trm-mb-20">
+    
+        <li>
+            <div class="trm-label">
+                Residence:
+            </div>
+            <div class="trm-label trm-label-light">
+                Mars
+            </div>
+        </li>
+    
+</ul>
+<!-- info end -->
+
+        
+    <div class="trm-divider trm-mb-40 trm-mt-40"></div>
+    <!-- action button -->
+    <div class="text-center">
+        <a href="mailto:2810468241@qq.com" class="trm-btn">
+            联系我
+            <i class="iconfont far fa-envelope"></i>
+        </a>
+    </div>
+    <!-- action button end -->
+
+    </div>
+</div>
+                    <!-- main card end -->
+                </div>
+            
+            <div class="trm-page-content col-lg-8">
+                <div id="trm-content" class="trm-content">
+                    <div class="trm-post-info row hidden-sm">
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-calendar-alt trm-icon"></i><br>
+            11/23
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-clock trm-icon"></i><br>
+            23:54
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div id="post-author" class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-user trm-icon"></i><br>
+            alexxiao
+        </div>
+    </div>
+</div>
+<div class="trm-card ">
+    <article id="article-container" class="trm-publication">
+    <ul>
+<li>下载私有仓库镜像，并且搭建私有仓库</li>
+<li>docker 仓库操作<ul>
+<li>打标签</li>
+<li>查看镜像</li>
+<li>查看tag</li>
+<li>上传镜像</li>
+<li>下载镜像</li>
+<li>镜像删除</li>
+</ul>
+</li>
+<li>私库配置用户名密码</li>
+</ul>
+<blockquote>
+<p>服务器通信 ： 保证在同一内网</p>
+</blockquote>
+<h2 id="下载私有仓库镜像-搭建私有仓库"><a href="#下载私有仓库镜像-搭建私有仓库" class="headerlink" title="下载私有仓库镜像 搭建私有仓库"></a>下载私有仓库镜像 搭建私有仓库</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">docker pull registry:2</span><br><span class="line">docker images </span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">需要挂载的目录及配置文件创建</span></span><br><span class="line">mkdir -p /opt/data/registry</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">config下为registry的yml配置文件</span></span><br><span class="line">mkdir -p /opt/data/registry/config</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">见下config.yml配置</span></span><br><span class="line">vim config.yml</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">auth下存放 账密文件 具体见文档最后 不需要账密则可不配置</span></span><br><span class="line">mkdir -p /opt/data/registry/auth </span><br></pre></td></tr></table></figure>
+
+<h3 id="config-yml配置"><a href="#config-yml配置" class="headerlink" title="config.yml配置"></a>config.yml配置</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">version: 0.1</span><br><span class="line">log:</span><br><span class="line">  fields:</span><br><span class="line">    service: registry</span><br><span class="line">storage:</span><br><span class="line">  cache:</span><br><span class="line">    blobdescriptor: inmemory</span><br><span class="line">  filesystem:</span><br><span class="line">    rootdirectory: /var/lib/registry</span><br><span class="line">  # 增加的delete 可以删除 指定tag的镜像</span><br><span class="line">  delete:</span><br><span class="line">    enabled: true</span><br><span class="line">http:</span><br><span class="line">  addr: :5000</span><br><span class="line">  headers:</span><br><span class="line">    X-Content-Type-Options: [nosniff]</span><br><span class="line">health:</span><br><span class="line">  storagedriver:</span><br><span class="line">    enabled: true</span><br><span class="line">    interval: 10s</span><br><span class="line">    threshold: 3</span><br><span class="line">auth: # 增加的 账密配置</span><br><span class="line">  htpasswd:</span><br><span class="line">    realm: registry-realm</span><br><span class="line">    path: /var/lib/registry/auth/htpasswd</span><br></pre></td></tr></table></figure>
+
+<h3 id="镜像启动命令"><a href="#镜像启动命令" class="headerlink" title="镜像启动命令"></a>镜像启动命令</h3><p>加了账密</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">docker run -itd \</span><br><span class="line">-p 5000:5000 \</span><br><span class="line">--restart always \</span><br><span class="line">-v /opt/data/registry:/var/lib/registry \</span><br><span class="line">-v /opt/data/registry/config/config.yml:/etc/docker/registry/config.yml \</span><br><span class="line">-v /opt/data/registry/auth:/var/lib/registry/auth \</span><br><span class="line">--name registry \</span><br><span class="line">registry:2</span><br></pre></td></tr></table></figure>
+
+<p>无需账密</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">docker run -itd \</span><br><span class="line">-p 5000:5000 \</span><br><span class="line">--restart always \</span><br><span class="line">-v /opt/data/registry:/var/lib/registry \</span><br><span class="line">-v /opt/data/registry/config/config.yml:/etc/docker/registry/config.yml \</span><br><span class="line">--name registry \</span><br><span class="line">registry:2</span><br></pre></td></tr></table></figure>
+
+
+
+<p>改操作为修改docker的配置 所有需要连接该私库的机器都需要配置</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /usr/lib/systemd/system/docker.service</span><br></pre></td></tr></table></figure>
+
+<p>ExecStart&#x3D; …最后添加 –insecure-registry registry_ip:5000 其他服务器也需要修改该配置 </p>
+<p>本机配置 127.0.0.1:5000</p>
+<p>其余服务器走内网地址配置 内网ip:port</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl daemon-reload</span><br><span class="line">systemctl restart docker</span><br></pre></td></tr></table></figure>
+
+<p>docker 准备镜像和容器</p>
+<h2 id="仓库相关操作"><a href="#仓库相关操作" class="headerlink" title="仓库相关操作"></a>仓库相关操作</h2><p>私有仓库中的镜像必须打上标签</p>
+<p>以nginx为例</p>
+<h3 id="给已有镜像打标签"><a href="#给已有镜像打标签" class="headerlink" title="给已有镜像打标签"></a>给已有镜像打标签</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker tag nginx:latest ip:port/&#123;名字&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="查看仓库镜像"><a href="#查看仓库镜像" class="headerlink" title="查看仓库镜像"></a>查看仓库镜像</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl registry_ip:5000/v2/_catalog</span><br></pre></td></tr></table></figure>
+
+<h3 id="查看tag"><a href="#查看tag" class="headerlink" title="查看tag"></a>查看tag</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">curl</span> <span class="string">-XGET</span> <span class="string">http://registry_ip:5000/v2/nginx-test/tags/list</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="镜像上传"><a href="#镜像上传" class="headerlink" title="镜像上传"></a>镜像上传</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">docker</span> <span class="string">push</span> <span class="string">registry_ip:port/&#123;名称&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="镜像下载"><a href="#镜像下载" class="headerlink" title="镜像下载"></a>镜像下载</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">docker</span> <span class="string">pull</span> <span class="string">registry_ip:port/&#123;名称&#125;:&#123;tag&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="镜像删除"><a href="#镜像删除" class="headerlink" title="镜像删除"></a>镜像删除</h3><h4 id="docker-registry-删除镜像-配置"><a href="#docker-registry-删除镜像-配置" class="headerlink" title="docker registry 删除镜像 配置"></a>docker registry 删除镜像 配置</h4><p>进入 docker registry sh</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it registry sh</span><br></pre></td></tr></table></figure>
+
+<p>修改以下 文件 &#x2F;etc&#x2F;docker&#x2F;registry&#x2F;config.yml</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">version: 0.1</span><br><span class="line">log:</span><br><span class="line">  fields:</span><br><span class="line">    service: registry</span><br><span class="line">storage:</span><br><span class="line">  cache:</span><br><span class="line">    blobdescriptor: inmemory</span><br><span class="line">  filesystem:</span><br><span class="line">    rootdirectory: /var/lib/registry</span><br><span class="line">  delete:</span><br><span class="line">    enabled: true</span><br><span class="line">http:</span><br><span class="line">  addr: :5000</span><br><span class="line">  headers:</span><br><span class="line">    X-Content-Type-Options: [nosniff]</span><br><span class="line">health:</span><br><span class="line">  storagedriver:</span><br><span class="line">    enabled: true</span><br><span class="line">    interval: 10s</span><br><span class="line">    threshold: 3</span><br><span class="line">auth:</span><br><span class="line">  htpasswd:</span><br><span class="line">    realm: registry-realm</span><br><span class="line">    path: /var/lib/registry/auth/htpasswd</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>重启 registry</p>
+<p>删除命令</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">curl</span> <span class="string">-I</span> <span class="string">-XDELETE</span> <span class="string">registry_ip:5000/v2/nginx-test/manifests/sha256:9ceac672f55cdad7316651fcced0d6a1ba44e87454ec86236cb3bca647e419f6</span></span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">curl</span> <span class="string">-I</span> <span class="string">-XGET</span> <span class="string">--header</span> <span class="string">&quot;Accept:application/vnd.docker.distribution.manifest.v2+json&quot;</span> <span class="string">\</span></span><br><span class="line"><span class="string">registry_ip:5000/v2/nginx-test/manifests/latest</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/34326506/1705644563349-10a47c2a-1c35-49a2-851a-f3eccc50e66a.png"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<p>取Docker-Content-Digest 后面的值</p>
+<p>简易版 </p>
+<p>进入 registry容器</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">docker</span> <span class="string">exec</span> <span class="string">-it</span> <span class="string">registry</span> <span class="string">sh</span></span><br><span class="line"><span class="string">cd</span> <span class="string">/var/lib/registry/docker/registry/v2/repositories</span></span><br><span class="line"><span class="string">rm</span> <span class="string">-rf</span> <span class="string">&lt;镜像文件夹&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>删除后重启registry 一般镜像上传后在文件夹 &#x2F;var&#x2F;lib&#x2F;registry&#x2F;docker&#x2F;registry&#x2F;v2&#x2F;repositories下</p>
+<h2 id="私库配置用户名密码"><a href="#私库配置用户名密码" class="headerlink" title="私库配置用户名密码"></a>私库配置用户名密码</h2><p><img src="https://cdn.nlark.com/yuque/0/2024/png/34326506/1705650798048-00514810-4197-4872-8fe6-1df7eae25c7c.png"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<p>生成账密</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum -y install httpd-tools # 下载 账密生成工具</span><br><span class="line">htpasswd -Bbn admin 123456 &gt; /opt/data/registry/auth/htpasswd </span><br></pre></td></tr></table></figure>
+
+<h3 id="增加几个挂载目录"><a href="#增加几个挂载目录" class="headerlink" title="增加几个挂载目录"></a>增加几个挂载目录</h3><ul>
+<li>config.yml 配置文件相关</li>
+<li>htpasswd auth相关</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">docker run -itd \</span><br><span class="line">-p 5000:5000 \</span><br><span class="line">--restart always \</span><br><span class="line">-v /opt/data/registry:/var/lib/registry \</span><br><span class="line">-v /opt/data/registry/config/config.yml:/etc/docker/registry/config.yml \</span><br><span class="line">-v /opt/data/registry/auth:/var/lib/registry/auth \</span><br><span class="line">--name registry \</span><br><span class="line">registry:2</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="多用户配置"><a href="#多用户配置" class="headerlink" title="多用户配置"></a>多用户配置</h3><p><img src="https://cdn.nlark.com/yuque/0/2024/png/34326506/1705653144148-70c6b6ef-1597-406d-9621-a4185c6ec88a.png"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/34326506/1705653119489-86fdb00d-7d2f-4c10-9f5a-2d0a172d0ac8.png"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<p>config.yml中配置了htpasswd 保存账密的文件</p>
+<p>使用htpasswd生成多个用户 加到htpasswd文件中即可</p>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>操作curl命令时加上 -u username:password</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/34326506/1705653203444-cf49c0a5-1b67-409b-b82f-91c03db001da.png"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<p>操作 docker push docker pull 等命令需要加上 docker login ip:port</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/34326506/1705653892869-3cdf7ea2-5e23-4967-b74f-e3893f5e384b.png"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+
+</article>
+    
+    
+
+</div>
+<div class="trm-post-next-prev row">
+    <div class="col-lg-12">
+        <!-- title -->
+        <h5 class="trm-title-with-divider">
+            其他文章
+            <span data-number="02"></span>
+        </h5>
+    </div>
+    
+    
+        <div class="col-lg-6">
+    <div class="trm-blog-card trm-scroll-animation">
+        <a href="/2024/11/23/hello-world/" class="trm-cover-frame trm-anima-link">
+            
+            
+                <img alt="cover" class="no-fancybox" src="https://www.logosc.cn/uploads/resources/2018/11/29/1543459457_thumb.jpg">
+            
+        </a>
+        
+        <div class="trm-card-descr">
+            <div class="trm-label trm-category trm-mb-20">
+                <a href=" #.">
+                    未分类
+                </a>
+            </div>
+            <h5>
+                <a href="/2024/11/23/hello-world/" class="trm-anima-link">
+                    从零开始搭建一个后台模板
+                </a>
+            </h5>
+            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>24/11/23</li>
+                <li>18:32</li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</div>
+    
+</div>
+
+    
+
+
+
+                    <div class="trm-divider footer-divider"></div>
+
+                    <!-- footer -->
+                    <footer class="trm-footer-card trm-scroll-animation">
+
+    
+
+    
+
+    
+        <div class="trm-footer-item">
+            <span>
+                由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v7.3.0
+            </span>
+            <span class="footer-separator" data-separator=" | "></span>
+            <span> 
+                主题 - 
+                <a rel="noopener" href='https://github.com/MaLuns/hexo-theme-async' target='_blank'>Async</a>
+                v2.2.4
+            </span>
+        </div>
+      
+
+     
+
+     
+</footer>
+                    <!-- footer end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+            <!-- body end -->
+
+            
+
+            
+<div class="trm-fixed-container">
+    
+    
+        <div class="trm-fixed-btn" data-title="阅读模式" onclick="asyncFun.switchReadMode()">
+            <i class="iconfont fas fa-book-reader"></i>
+        </div>
+    
+    
+    <div id="trm-back-top" class="trm-fixed-btn" data-title="回到顶部">
+        <i class="iconfont fas fa-arrow-up"></i>
+    </div>
+</div>
+        </div>
+      </div>
+      <!-- scroll container end -->
+  </div>
+  <!-- app wrapper end -->
+
+  
+  <!-- Plugin -->
+
+
+
+
+    
+    
+<script src="https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+
+    
+
+    
+        <script src="/js/plugins/typing.js?v=2.2.4"></script>
+    
+
+    
+
+    <!-- 数学公式 -->
+    
+
+    <!-- 评论插件 -->
+    
+        
+
+        
+    
+
+		
+			<script src="/js/plugins/danmu.js?v=2.2.4"></script>
+		
+
+
+
+
+    <!-- Service Worker -->
+    
+    <!-- baidu push -->
+    
+
+
+<script id="async-script" src="/js/main.js?v=2.2.4"></script>
+
+<!-- CDN -->
+
+
+    
+
+    
+
+    
+
+
+
+</body>
+
+</html>
